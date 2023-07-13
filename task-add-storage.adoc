@@ -1,0 +1,43 @@
+---
+permalink: task-add-storage.html 
+sidebar: sidebar 
+keywords: add, storage 
+summary: Antes de poder restaurar las máquinas virtuales o hacer un backup, debes añadir «Amazon FSx para NetApp ONTAP» o «Amazon FSx para SVM de NetApp ONTAP» como sistema de almacenamiento. Añadir almacenamiento permite el backup y recuperación de BlueXP para máquinas virtuales reconocer y gestionar las operaciones de backup y restauración en vCenter. 
+---
+= Añada almacenamiento
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Antes de poder restaurar las máquinas virtuales o hacer un backup, debes añadir «Amazon FSx para NetApp ONTAP» o «Amazon FSx para SVM de NetApp ONTAP» como sistema de almacenamiento. Añadir almacenamiento permite el backup y recuperación de BlueXP para máquinas virtuales reconocer y gestionar las operaciones de backup y restauración en vCenter.
+
+.Antes de empezar
+El servidor ESXi, el backup y la recuperación de BlueXP para máquinas virtuales, y cada instancia de vCenter debe sincronizarse al mismo tiempo. Si intenta añadir almacenamiento, pero la configuración de hora de vCenter no está sincronizada, es posible que la operación produzca un error de certificado Java.
+
+.Acerca de esta tarea
+El backup y recuperación de datos de BlueXP para máquinas virtuales realiza operaciones de backup y restauración en máquinas virtuales de almacenamiento conectadas directamente y en máquinas virtuales de almacenamiento en un clúster de almacenamiento.
+
+* Los nombres de las máquinas virtuales de almacenamiento deben resolver las LIF de administración.
++
+Si añadió entradas de host, etc, para nombres de máquinas virtuales de almacenamiento en backup y recuperación de BlueXP para máquinas virtuales, debe comprobar que también se puedan resolver desde el dispositivo virtual.
+
++
+Si añade una máquina virtual de almacenamiento con un nombre que no puede resolver a la LIF de gestión, se producen errores en los trabajos de backup programados porque el plugin no puede detectar ningún almacén de datos o volúmenes en esa máquina virtual de almacenamiento. Si esto sucede, añada la máquina virtual de almacenamiento a la máquina virtual de backup y recuperación de BlueXP para máquinas virtuales y especifique la LIF de gestión o añada un clúster que contenga la máquina virtual de almacenamiento y especifique la LIF de gestión del clúster.
+
+* Los detalles de autenticación de almacenamiento no se comparten entre varias instancias de backup y recuperación de BlueXP para máquinas virtuales, o entre Windows SnapCenter Server y backup y recuperación de datos de BlueXP para máquinas virtuales en vCenter.
+
+
+.Pasos
+. En el panel de navegación izquierdo del cliente de vSphere, haga clic en *Storage Systems*.
+. En la página Sistemas de almacenamiento, haga clic en *Agregar*.
++
+image:vSphere client.png[""]
+
+. En el asistente *Add Storage System*, ingrese la información básica de la VM de almacenamiento o del clúster.
+. Seleccione el método de autenticación *Credentials* e inicie sesión como administrador de Amazon FSx.
+. Haga clic en *Agregar*.
+
+
+Si añadió un clúster de almacenamiento, todas las máquinas virtuales de almacenamiento de ese clúster se añadirán automáticamente. Los equipos virtuales de almacenamiento agregados automáticamente (a veces llamados "equipos virtuales de almacenamiento implícitos") se muestran en la página de resumen del clúster con un guión (-) en lugar de un nombre de usuario. Los nombres de usuario sólo se muestran para entidades de almacenamiento explícitas.

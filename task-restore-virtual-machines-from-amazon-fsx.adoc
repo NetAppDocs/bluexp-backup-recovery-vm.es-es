@@ -1,0 +1,74 @@
+---
+permalink: task-restore-virtual-machines-from-amazon-fsx.html 
+sidebar: sidebar 
+keywords: restore, virtual machines, amazon fsx 
+summary: Al restaurar una máquina virtual, puede sobrescribir el contenido existente con la copia de seguridad que seleccione o puede realizar una copia de la máquina virtual. 
+---
+= Restaura máquinas virtuales desde Amazon FSx
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Al restaurar una máquina virtual, puede sobrescribir el contenido existente con la copia de seguridad que seleccione o puede realizar una copia de la máquina virtual.
+
+.Antes de empezar
+* Debe existir un backup.
++
+Debe haber creado un backup de la máquina virtual mediante el backup y la recuperación de BlueXP para máquinas virtuales para poder restaurar la máquina virtual.
+
++
+[NOTE]
+====
+Las operaciones de restauración no pueden finalizar correctamente si hay copias Snapshot de la máquina virtual realizadas mediante un software distinto al backup y recuperación de BlueXP para máquinas virtuales.
+
+====
+* La máquina virtual no debe estar en tránsito.
++
+La máquina virtual que desea restaurar no debe estar en un estado de vMotion o Storage vMotion.
+
+* Errores de configuración DE ALTA disponibilidad.
++
+Compruebe que no se muestren errores de configuración de alta disponibilidad en la pantalla vCenter ESXi Host Summary antes de restaurar los backups a una ubicación diferente.
+
+
+
+.Acerca de esta tarea
+* Se cancela el registro de la máquina virtual y se vuelve a registrar.
++
+La operación de restauración de máquinas virtuales cancela el registro de la máquina virtual original, restaura la máquina virtual desde una copia de Snapshot de backup y registra la máquina virtual restaurada con el mismo nombre y la misma configuración en el mismo servidor ESXi. Las máquinas virtuales deben añadir manualmente a los grupos de recursos después de la restauración.
+
+* Restauración de almacenes de datos
++
+No es posible restaurar un almacén de datos, pero sí es posible restaurar cualquier máquina virtual incluida en ese almacén de datos.
+
+* Fallos de snapshots de consistencia de VMware para una máquina virtual.
++
+Aunque una snapshot de consistencia de VMware arroje un fallo para una máquina virtual, el backup de la máquina virtual se efectúa de todas formas. Puede visualizar las entidades incluidas en la copia de backup por medio del asistente Restore y usarlo para operaciones de restauración.
+
+
+
+.Pasos
+. En la GUI del cliente web de VMware vSphere, haga clic en *Menú* en la barra de herramientas, haga clic en *Inventario* y luego seleccione *Máquinas virtuales y plantillas*.
+. En el panel de navegación izquierdo, haga clic con el botón derecho en una *Máquina virtual*, luego seleccione *Copia de seguridad en la nube de NetApp* en la lista desplegable y, a continuación, seleccione *Restaurar* para iniciar el asistente.
+. En el asistente *Restaurar*, en la página *Seleccionar copia de seguridad*, seleccione la copia Snapshot de copia de seguridad que desea restaurar.
++
+Puede buscar por un nombre de backup específico o un nombre de backup parcial y también puede filtrar la lista de backups haciendo clic en el icono de filtro y seleccionando un intervalo de fechas y horas. Además, debe seleccionar si desea backups que contengan snapshots de VMware, si desea visualizar backups montados y la ubicación. Haga clic en *Aceptar* para volver al asistente.
+
+. En la página *Select Scope*, seleccione *Whole Virtual Machine* en el campo *Restore Scope*, luego seleccione la ubicación de restauración y luego ingrese la información ESXi de destino donde se debe montar la copia de seguridad.
++
+Al restaurar copias de seguridad parciales, la operación de restauración omite la página *Select Scope*.
+
+. Active la casilla de verificación *Restart VM* si desea que la máquina virtual se encienda después de la operación de restauración.
+. En la página *Seleccionar ubicación*, seleccione la ubicación del almacén de datos restaurado.
+. Revise la página *Resumen* y luego haga clic en *Finalizar*.
+. *Opcional*: Monitorea el progreso de la operación haciendo clic en *Tareas recientes* en la parte inferior de la pantalla.
+
+
+.Después de terminar
+* Agregar máquinas virtuales restauradas a grupos de recursos.
++
+Aunque las máquinas virtuales se restauran, no se agregan automáticamente a sus grupos de recursos anteriores. Por lo tanto, debe añadir manualmente las máquinas virtuales restauradas a los grupos de recursos correspondientes.
+
+

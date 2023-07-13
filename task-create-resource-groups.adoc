@@ -1,0 +1,150 @@
+---
+permalink: task-create-resource-groups.html 
+sidebar: sidebar 
+keywords: create, resource, groups 
+summary: Un grupo de recursos es el contenedor de máquinas virtuales y almacenes de datos que desea proteger. 
+---
+= Crear grupos de recursos
+:allow-uri-read: 
+:experimental: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Un grupo de recursos es el contenedor de máquinas virtuales y almacenes de datos que desea proteger.
+
+Para todos los grupos de recursos, no agregue máquinas virtuales que estén en un estado inaccesible. Aunque es posible crear un grupo de recursos que contenga máquinas virtuales inaccesibles, se producirá un error en los backups de ese grupo de recursos.
+
+.Acerca de esta tarea
+Puede añadir o quitar recursos de un grupo de recursos en cualquier momento.
+
+* Realizar el backup de un solo recurso
++
+Para realizar el backup de un solo recurso (por ejemplo, una máquina virtual única), debe crear un grupo de recursos que contenga el único recurso.
+
+* Realizar el backup de varios recursos
++
+Para realizar el backup de varios recursos, debe crear un grupo de recursos que contenga varios de ellos.
+
+* Optimizar las copias de Snapshot
++
+Para optimizar las copias de Snapshot, debe incluir las máquinas virtuales y los almacenes de datos que estén asociados con el mismo volumen en un solo grupo de recursos.
+
+* Política de backup
++
+Aunque es posible crear un grupo de recursos sin una política de backup, solo puede ejecutar operaciones de protección de datos programadas cuando se asocia al menos una política al grupo de recursos. Puede usar una política existente, o bien crear una nueva mientras crea un grupo de recursos.
+
+* Comprobación de compatibilidad
++
+El backup y la recuperación de datos de BlueXP para máquinas virtuales realiza comprobaciones de compatibilidad cuando creas un grupo de recursos. Estos pueden ser los motivos de la incompatibilidad:
+
++
+** Los VMDK están en un almacenamiento no compatible.
+** Un dispositivo PCI compartido está conectado a una máquina virtual.
+
+
+
+
+.Pasos
+. En el panel de navegación izquierdo de la copia de seguridad y recuperación de BlueXP para máquinas virtuales, haz clic en *Resource Groups*.
+. En la página *Grupos de recursos*, haz clic en *Crear* para iniciar el asistente.
++
+image:Resource group.png[""]
+
++
+Esta es la forma más sencilla de crear un grupo de recursos. No obstante, también puede crear un grupo de recursos con un recurso realizando una de las acciones siguientes:
+
++
+** Para crear un grupo de recursos para una máquina virtual, haz clic en menu:Menú[Hosts and Clusters], luego haz clic con el botón derecho en una máquina virtual, selecciona la copia de seguridad y recuperación de BlueXP para máquinas virtuales y, a continuación, haz clic en *Crear*.
+** Para crear un grupo de recursos para un almacén de datos, haga clic en menu:Menú[Hosts and Clusters], después haga clic con el botón derecho en un almacén de datos, seleccione BlueXP backup and recovery for VMs y, a continuación, haga clic en *Crear*.
+
+
+. En la página *Información general y notificación* del asistente, introduzca los valores requeridos.
+. En la página *Recursos*, haga lo siguiente:
++
+[cols="50,50"]
+|===
+| Para este campo… | Haga esto… 
+
+
+ a| 
+Ámbito
+ a| 
+Seleccione el tipo de recurso que desea proteger:
+
+** Almacenes de datos
+** Equipos virtuales
+
+
+
+
+ a| 
+Centro de datos
+ a| 
+Vaya a las máquinas virtuales o los almacenes de datos
+
+
+
+ a| 
+Entidades disponibles
+ a| 
+Seleccione los recursos que desea proteger y, a continuación, haga clic en > para mover sus selecciones a la lista Entidades seleccionadas
+
+|===
++
+Al hacer clic en *Siguiente*, el sistema primero comprueba si el backup y la recuperación de BlueXP gestiona y si es compatible con el almacenamiento donde se encuentran los recursos seleccionados.
+
++
+Si aparece el mensaje que seleccionó <resource-name> is Not BlueXP Backup and recovery for VMs compatibles, significa que el recurso seleccionado no es compatible con el backup y la recuperación de BlueXP para máquinas virtuales.
+
+. En la página *Spanning Disks*, seleccione una opción para Virtual Machines con varios VMDK en varios almacenes de datos:
++
+** Always exclude all spanning datastores [este es el comportamiento predeterminado para los almacenes de datos.]
+** Always include all spanning datastores [Este es el comportamiento predeterminado para las máquinas virtuales.]
+** Seleccione manualmente los almacenes de datos en expansión que se incluirán.
+
+
+. En la página *Policies*, seleccione o cree una o más políticas de copia de seguridad, como se muestra en la siguiente tabla:
++
+[cols="50,50"]
+|===
+| Para usar… | Haga esto… 
+
+
+ a| 
+Una política existente
+ a| 
+Seleccione una o más políticas de la lista.
+
+
+
+ a| 
+Una política nueva
+ a| 
+.. Haga clic en *Crear*.
+.. Complete el asistente New Backup Policy para volver al asistente Create Resource Group.
+
+
+|===
+. En la página *programaciones*, configure el programa de copia de seguridad para cada directiva seleccionada.
++
+En el campo Hora de inicio, introduzca una fecha y hora distintas a cero. La fecha debe tener el formato día/mes/año. Debe rellenar todos los campos. El backup y la recuperación de BlueXP para máquinas virtuales crea programaciones en la zona horaria en la que se implementan el backup y la recuperación de BlueXP para máquinas virtuales. Puede modificar la zona horaria mediante la interfaz gráfica de usuario de backup y recuperación de BlueXP para máquinas virtuales.
+
++
+image:Schedules.png[""]
+
+. Revise el *summary* y luego haga clic en *Finish*.
++
+Antes de hacer clic en Finish, puede volver a cualquier página del asistente y cambiar la información.
+
++
+Después de hacer clic en Finish, se añade el nuevo grupo de recursos a la lista de grupos de recursos.
+
++
+[NOTE]
+====
+Si la operación de inactividad falla en alguna de las máquinas virtuales del backup, el backup se marca como Not Virtual Machine coherente aunque la política seleccionada tenga la consistencia de máquina virtual seleccionada. En este caso, es posible que algunas de las máquinas virtuales se hayan desactivado correctamente.
+
+====
+

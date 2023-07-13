@@ -1,0 +1,28 @@
+---
+permalink: whats-new.html 
+sidebar: sidebar 
+keywords: 2-node switched Cisco 92300YC cluster switch migration 
+summary: Descubre las novedades de backup y recuperación de datos de BlueXP para máquinas virtuales. 
+---
+= Novedades de backup y recuperación de datos de BlueXP para máquinas virtuales
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Descubre las novedades de backup y recuperación de BlueXP para máquinas virtuales.
+
+
+
+== 13 de julio de 2023
+
+
+
+=== El backup y la recuperación de BlueXP para VM 1,0 ahora es GA
+
+Puedes proteger los datos en tus máquinas virtuales mediante backup y recuperación de datos de BlueXP para máquinas virtuales. Puede realizar backups de almacenes de datos en Amazon FSx y restaurar máquinas virtuales en su ubicación original.
+
+Esta solución está específicamente para máquinas virtuales y almacenes de datos en VMware Cloud on AWS y Amazon FSx for NetApp ONTAP.
+
+link:concept-bluexp-backup-and-recovery-for-virtual-machines-on-amazon-fsx.html["Backup y recuperación de datos de BlueXP para máquinas virtuales en Amazon FSx"]

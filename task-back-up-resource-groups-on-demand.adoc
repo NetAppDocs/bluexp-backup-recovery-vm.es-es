@@ -1,0 +1,36 @@
+---
+permalink: task-back-up-resource-groups-on-demand.html 
+sidebar: sidebar 
+keywords: back up, resource, groups, demand 
+summary: Se realizan operaciones de backup con todos los recursos definidos en un grupo de recursos. Si un grupo de recursos tiene una política anexada y una programación configurada, los backups se realizan automáticamente según esa programación. 
+---
+= Realice un backup de grupos de recursos bajo demanda
+:allow-uri-read: 
+:experimental: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Se realizan operaciones de backup con todos los recursos definidos en un grupo de recursos. Si un grupo de recursos tiene una política anexada y una programación configurada, los backups se realizan automáticamente según esa programación.
+
+.Antes de empezar
+* Debe tener creado un grupo de recursos con una política anexada.
++
+[NOTE]
+====
+No inicie una tarea de backup bajo demanda cuando ya esté ejecutándose un trabajo para realizar backup y recuperación de BlueXP para la base de datos MySQL de máquinas virtuales. Utilice la consola de mantenimiento para ver la programación de copia de seguridad configurada para la base de datos MySQL.
+
+====
++
+.Pasos
+.. En el panel de navegación de la izquierda de la página de cliente web de vCenter, haga clic en menu:backup and recovery de BlueXP para máquinas virtuales[Resource Groups], seleccione un grupo de recursos y, a continuación, haga clic en *Ejecutar ahora* para iniciar el backup.
++
+image:vSphere client_resource group.png[""]
+
+.. Si el grupo de recursos tiene varias políticas configuradas, en el cuadro de diálogo Backup Now, seleccione la política que desee usar para esta operación de backup.
+.. Haga clic en *Aceptar* para iniciar la copia de seguridad.
+.. Si la operación de inactividad falla en alguna de las máquinas virtuales del backup, el backup se completa con una advertencia y se marca como Not Virtual Machine coherente aunque la política seleccionada tiene la consistencia de máquina virtual seleccionada. En este caso, es posible que algunas de las máquinas virtuales se hayan desactivado correctamente. En el monitor de trabajos, los detalles de la máquina virtual fallida mostrarán la inactividad como fallida.
+
+
+

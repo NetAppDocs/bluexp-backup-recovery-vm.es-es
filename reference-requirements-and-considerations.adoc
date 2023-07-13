@@ -1,0 +1,34 @@
+---
+permalink: reference-requirements-and-considerations.html 
+sidebar: sidebar 
+keywords: requirements, considerations 
+summary: Tienes que tener en cuenta varios requisitos y consideraciones antes de utilizar el backup y la recuperación de BlueXP para máquinas virtuales. 
+---
+= Requisitos y consideraciones
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tienes que tener en cuenta varios requisitos y consideraciones antes de utilizar el backup y la recuperación de BlueXP para máquinas virtuales:
+
+* El backup y recuperación de datos de BlueXP para máquinas virtuales se implementa como una máquina virtual Linux, independientemente de si utilizas el plugin para proteger datos en sistemas Windows o sistemas Linux.
+* Deberías poner en marcha el backup y la recuperación de BlueXP para máquinas virtuales en VMC en AWS.
++
+El backup y recuperación de BlueXP para máquinas virtuales y VMC deben utilizar la misma zona horaria. Las programaciones de backups se ejecutan en la zona horaria en la que se implementa el backup y la recuperación de BlueXP para máquinas virtuales. VMC informa de los datos de la zona horaria en la que se encuentra el VMC. Por lo tanto, si el backup y recuperación de BlueXP para máquinas virtuales y VMC están en zonas horarias distintas, es posible que los datos del backup y recuperación de BlueXP para VMs Dashboard no sean los mismos que los datos de los informes.
+
+* No se debe implementar el backup y recuperación de BlueXP para máquinas virtuales en una carpeta que contenga un nombre con caracteres especiales.
++
+El nombre de la carpeta no debe contener los siguientes caracteres especiales: $!@#%&()_+{}';.,*?"<>|
+
+* Debes implementar y registrar una instancia única y separada del backup y la recuperación de BlueXP para máquinas virtuales para cada VMC en AWS.
++
+** Cada VMC en AWS debe emparejarse con una instancia independiente de backup y recuperación de BlueXP para máquinas virtuales.
+** Cada instancia de backup y recuperación de BlueXP para máquinas virtuales debe ponerse en marcha como máquina virtual de Linux independiente.
++
+Por ejemplo, si quieres realizar backups de seis instancias diferentes de VMC en AWS, debes implementar seis instancias de backup y recuperación de BlueXP para máquinas virtuales en seis hosts, y cada VMC en AWS debe emparejarse con una instancia única de backup y recuperación de BlueXP para máquinas virtuales.
+
+
+
+

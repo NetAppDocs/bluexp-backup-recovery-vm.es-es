@@ -1,0 +1,125 @@
+---
+permalink: task-deploy-bluexp-backup-and-recovery-for-vms.html 
+sidebar: sidebar 
+keywords: deploy, bluexp, backup, recovery for VMs 
+summary: Para proteger equipos virtuales, almacenes de datos y bases de datos consistentes con las aplicaciones en máquinas virtuales, debes implementar el backup y la recuperación de BlueXP en máquinas virtuales. 
+---
+= Implementa el backup y recuperación de datos de BlueXP para máquinas virtuales
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Para proteger equipos virtuales, almacenes de datos y bases de datos consistentes con las aplicaciones en máquinas virtuales, debes implementar el backup y la recuperación de BlueXP en máquinas virtuales.
+
+.Antes de empezar
+++ ++
+
+[NOTE]
+====
+La puesta en marcha de OVA es compatible con VMware vCenter 8,0 y versiones posteriores.
+
+====
+* Debe haber leído los requisitos de implementación.
+* Debe ejecutar una versión compatible de VMC en AWS.
+* Debe haber configurado y configurado su VMC en un entorno AWS.
+* Debe haber configurado un host ESXi para backup y recuperación de BlueXP de máquinas virtuales.
+* Debe haber descargado el backup y la recuperación de BlueXP para máquinas virtuales `.tar` archivo.
+* Debe tener los detalles de autenticación de inicio de sesión para su VMC en la instancia de AWS.
+* Debe tener un certificado con archivos válidos de claves pública y privada. Para obtener más información, consulte los artículos en la sección Gestión de certificados de almacenamiento.
+* Debe haber cerrado sesión y cerrado todas las sesiones del explorador del cliente de vSphere y eliminado la memoria caché del explorador para evitar cualquier problema de caché del explorador durante la implementación del backup y la recuperación de BlueXP para máquinas virtuales.
+* Debe haber habilitado Transport Layer Security (TLS) en vCenter. Consulte la documentación de VMware.
+
+
+Pon en marcha el backup y la recuperación de BlueXP para máquinas virtuales en la misma zona horaria que vCenter.
+
+.Pasos
+. Para VMware vCenter 7.0.3 y versiones posteriores, siga los pasos de Download the Open Virtual Appliance (OVA) para importar los certificados a vCenter.
+. En el explorador, desplácese hasta VMware vSphere vCenter.
+. Inicie sesión en la *página de inicio de sesión único de VMware vCenter*.
+. En el panel de navegación, haga clic con el botón derecho del ratón en cualquier objeto de inventario que sea un objeto primario válido de una máquina virtual, como un centro de datos, clúster o host, y seleccione *implementar plantilla OVF* para iniciar el asistente de implementación de VMware.
+. Extraiga el `.tar` archivo, que contiene el `.ova` crear archivos en el sistema local. En la página *Seleccionar una plantilla OVF*, especifique la ubicación de `.ova` archivo dentro del `.tar` carpeta extraída.
+. Haga clic en *Siguiente*.
+. En la página *Seleccione un nombre y una carpeta*, introduzca un nombre único para el equipo virtual o vApp, seleccione una ubicación de implementación y, a continuación, haga clic en *Siguiente*.
++
+Este paso especifica dónde importar `.ova` Archivar en vCenter. El nombre predeterminado para la máquina virtual es el mismo que el nombre de la seleccionada `.ova` archivo. Si cambia el nombre predeterminado, elija un nombre que sea único dentro de cada VMC en la carpeta de VM de AWS.
+
++
+La ubicación predeterminada de implementación de la máquina virtual es el objeto de inventario donde comenzó el asistente.
+
+. En la página *Seleccionar un recurso*, seleccione el recurso donde desea ejecutar la plantilla de VM desplegada y haga clic en *Siguiente*.
+. En la página *revisar detalles*, compruebe la `.ova` Detalles de la plantilla y haga clic en *Siguiente*.
+. En la página *acuerdos de licencia*, seleccione la casilla de verificación *Acepto todos los acuerdos de licencia*.
+. En la página *Seleccionar almacenamiento*, defina dónde y cómo almacenar los archivos para la plantilla OVF implementada.
++
+.. Seleccione el formato de disco para los VMDK.
+.. Seleccione una política de almacenamiento de máquina virtual.
++
+Esta opción solo está disponible si se habilitan las políticas de almacenamiento en el recurso de destino.
+
+.. Seleccione un almacén de datos para almacenar la plantilla de OVA implementada.
++
+El archivo de configuración y los archivos de disco virtual se almacenan en el almacén de datos.
+
++
+Seleccione un almacén de datos lo suficientemente grande para acomodar la máquina virtual o vApp y todos los archivos de disco virtual asociados.
+
+
+
+. En la página *Seleccionar redes*, haga lo siguiente:
++
+.. Seleccione una red de origen y asígnela a una red de destino.
++
+La columna Red de origen enumera todas las redes definidas en la plantilla OVA.
+
+.. En la sección *Configuración de asignación IP*, seleccione el protocolo IP requerido y, a continuación, haga clic en *Siguiente*.
++
+El backup y la recuperación de datos de BlueXP para máquinas virtuales es compatible con una interfaz de red. Si necesita varios adaptadores de red, debe configurarlo de forma manual.
+
+
+
+. En la página *Personalizar plantilla*, haga lo siguiente:
++
+.. En la sección *Register to existing vCenter*, introduzca el nombre de vCenter y las credenciales de vCenter del dispositivo virtual.
++
+En el campo *vCenter username*, introduzca el nombre de usuario con el formato domain\username.
+
+.. En la sección *Crear copia de seguridad y recuperación de BlueXP para las credenciales de VMs*, ingresa las credenciales locales.
++
+En el campo *Nombre de usuario*, introduzca el nombre de usuario local; no incluya los detalles del dominio.
+
++
+[IMPORTANT]
+====
+Anote el nombre de usuario y la contraseña que especifique. Tienes que utilizar estas credenciales si quieres modificar la configuración de backup y recuperación de BlueXP para máquinas virtuales más adelante.
+
+====
+.. Introduzca las credenciales para el usuario maint.
+.. En *Configurar propiedades de red*, introduzca el nombre de host.
++
+... En la sección *Configurar propiedades de red IPv4*, introduzca la información de red como la dirección IPv4, la máscara de red IPv4, la puerta de enlace IPv4, el DNS primario IPv4, el DNS secundario IPv4, Y los dominios de búsqueda IPv4.
++
+[IMPORTANT]
+====
+Puede omitir estos pasos y dejar las entradas en blanco en la sección Configurar propiedades de red, si desea continuar con DHCP como configuración de red.
+
+====
+
+
+.. En *Fecha y hora de configuración*, seleccione la zona horaria en la que se encuentra el para vCenter.
+
+
+. En la página *preparado para completar*, revise la página y haga clic en *Finalizar*.
++
+Todos los hosts deben configurarse con direcciones IP (no se admiten los nombres de host FQDN). La operación de implementación no valida los datos antes de implementar.
+
++
+Puede ver el progreso de la implementación desde la ventana tareas recientes mientras espera a que finalicen las tareas de importación e implementación de OVF.
+
++
+Cuando el backup y la recuperación de BlueXP para máquinas virtuales se implementan correctamente, se implementan como máquina virtual Linux, registrada en vCenter y se instala un cliente de VMware vSphere.
+
+. Navegue hasta la máquina virtual donde se implementó la copia de seguridad y recuperación de BlueXP para máquinas virtuales, luego haga clic en la pestaña *Resumen* y luego haga clic en el cuadro *Encendido* para iniciar el dispositivo virtual.
+. Mientras se está activando la copia de seguridad y recuperación de BlueXP para VM, haz clic con el botón derecho en la copia de seguridad y recuperación de BlueXP implementada para VM, selecciona *Sistema operativo invitado* y luego haz clic en *Instalar herramientas de VMware*.
+

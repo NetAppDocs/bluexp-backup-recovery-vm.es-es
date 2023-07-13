@@ -1,0 +1,33 @@
+---
+indexpage:
+  lead: El backup y recuperación de datos de BlueXP para máquinas virtuales es un
+    dispositivo virtual independiente (formato de dispositivo virtual abierto) que
+    proporciona servicios de protección de datos para máquinas virtuales y almacenes
+    de datos en VMware Cloud on AWS y Amazon FSx para NetApp ONTAP.
+  tiles:
+  - title: Manos a la obra
+    links:
+    - title: Obtén más información sobre el backup y la recuperación de datos de BlueXP
+        para máquinas virtuales
+      url: concept-bluexp-backup-and-recovery-for-virtual-machines-on-amazon-fsx.html
+    - title: Flujos de trabajo no compatibles
+      url: concept-unsupported-workflows.html
+  - title: Implementa el backup y recuperación de datos de BlueXP para máquinas virtuales
+    links:
+    - title: Descargue el OVA
+      url: task-download-the-open-virtual-appliance.html
+    - title: Implementa el backup y recuperación de datos de BlueXP para máquinas
+        virtuales
+      url: task-deploy-bluexp-backup-and-recovery-for-vms.html
+  - title: Utiliza el backup y la recuperación de datos de BlueXP para máquinas virtuales
+    links:
+    - title: Añada almacenamiento
+      url: task-add-storage.html
+    - title: Cree políticas de backup
+      url: task-create-backup-policies-for-vms-and-datastores.html
+    - title: Crear grupos de recursos
+      url: task-create-resource-groups.html
+    - title: Realice un backup de grupos de recursos bajo demanda
+      url: task-back-up-resource-groups-on-demand.html
+    - title: Restaura máquinas virtuales desde Amazon FSx
+      url: task-restore-virtual-machines-from-amazon-fsx.html

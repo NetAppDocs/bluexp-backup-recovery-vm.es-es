@@ -1,0 +1,51 @@
+---
+settings:
+  name: BlueXP backup and recovery for VMs
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: es-es,us-en,ja-jp,ko-kr,zh-cn,zh-tw,de-de,fr-fr,it-it
+sidebar:
+  entries:
+  - title: Documentos de backup y recuperación de datos de BlueXP para máquinas virtuales
+    url: "/index.html"
+  - title: Notas de la versión
+    url: "/whats-new.html"
+  - title: Manos a la obra
+    entries:
+    - title: Obtén más información sobre el backup y la recuperación de datos de BlueXP
+        para máquinas virtuales
+      url: "/concept-bluexp-backup-and-recovery-for-virtual-machines-on-amazon-fsx.html"
+    - title: Flujos de trabajo no compatibles
+      url: "/concept-unsupported-workflows.html"
+  - title: Implementa el backup y recuperación de datos de BlueXP para máquinas virtuales
+    entries:
+    - title: Requisitos y consideraciones
+      url: "/reference-requirements-and-considerations.html"
+    - title: Descargue el OVA
+      url: "/task-download-the-open-virtual-appliance.html"
+    - title: Implementa el backup y recuperación de datos de BlueXP para máquinas
+        virtuales
+      url: "/task-deploy-bluexp-backup-and-recovery-for-vms.html"
+  - title: Crea backups de un almacén de datos NFS en Amazon FSx
+    entries:
+    - title: Añada almacenamiento
+      url: "/task-add-storage.html"
+    - title: Cree políticas de backup
+      url: "/task-create-backup-policies-for-vms-and-datastores.html"
+    - title: Crear grupos de recursos
+      url: "/task-create-resource-groups.html"
+    - title: Realice un backup de grupos de recursos bajo demanda
+      url: "/task-back-up-resource-groups-on-demand.html"
+  - title: Restaura máquinas virtuales desde Amazon FSx
+    url: "/task-restore-virtual-machines-from-amazon-fsx.html"
+  - title: Conocimiento y apoyo
+    entries:
+    - title: Regístrese para recibir soporte
+      url: "/task-support-registration.html"
+    - title: Obtenga ayuda
+      url: "/task-get-help.html"
+  - title: Avisos legales
+    url: "/legal-notices.html"

@@ -1,0 +1,155 @@
+---
+permalink: task-create-backup-policies-for-vms-and-datastores.html 
+sidebar: sidebar 
+keywords: create, backup, policies, for VMs, datastores 
+summary: Debe crear políticas de backup antes de usar el backup y la recuperación de BlueXP para máquinas virtuales para realizar backups de las máquinas virtuales y los almacenes de datos. 
+---
+= Crear políticas de backup para máquinas virtuales y almacenes de datos
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Debe crear políticas de backup antes de usar el backup y la recuperación de BlueXP para máquinas virtuales para realizar backups de las máquinas virtuales y los almacenes de datos.
+
+.Antes de empezar
+* Debe haber leído antes los requisitos previos.
+* Debe haber configurado las relaciones de almacenamiento secundario.
++
+** Si va a replicar las copias de Snapshot en un almacenamiento secundario reflejado o en almacén, deben configurarse las relaciones y el administrador de SnapCenter debe haberle asignado las máquinas virtuales de almacenamiento tanto para el volumen de origen como para el volumen de destino.
+** A fin de transferir correctamente copias de Snapshot a un almacenamiento secundario para relaciones de reflejo de versión flexible en un almacén de datos NFS, asegúrese de que el tipo de política de SnapMirror sea Asynchronous Mirror y que esté marcada la opción «all_source_snapshots».
+** Cuando el número de copias de Snapshot del almacenamiento secundario (reflejo-almacén) alcanza el límite máximo, se produce un error en la actividad para registrar el backup y aplicar la retención en la operación de backup y se genera el siguiente error: Esta copia de Snapshot se utiliza actualmente como copia de Snapshot de referencia por una o más relaciones de SnapMirror. Al eliminar la copia Snapshot, se pueden producir errores en las operaciones de SnapMirror futuras.
++
+Para corregir este problema, configure la normativa de retención de SnapMirror para el almacenamiento secundario y evite alcanzar el límite máximo de copias de Snapshot.
+
+
+
+* Si desea realizar backups consistentes con la máquina virtual, debe tener instaladas y en ejecución las herramientas de VMware. Las herramientas de VMware se necesitan para desactivar los equipos virtuales.
+
+
+.Pasos
+. En el panel de navegación izquierdo de la copia de seguridad y recuperación de BlueXP para máquinas virtuales, haz clic en *Policies*.
+. En la página *Policies*, haz clic en *Create* para iniciar el asistente.
+image:vSphere client_policies.png[""]
+. En la página *Nueva política de copia de seguridad*, seleccione el VMC en AWS que usará la política y, a continuación, introduzca el nombre de la política y una descripción.
++
+** Caracteres no admitidos
++
+No utilice los siguientes caracteres especiales en máquinas virtuales, almacenes de datos, clústeres, políticas, backup o nombres de grupos de recursos: % & * $ # @ ! \ / : * ? " < > - | ; ' , .
+
++
+Se permite el carácter de guion bajo (_).
+image:New backup policy.png[""]
+
+
+
+. Especifique la configuración de retención.
++
+[IMPORTANT]
+====
+Debe establecer el número de retención en 2 backups o un valor más alto si tiene pensado habilitar la replicación de SnapVault. Si configura el número de retención en 1 backup para conservar, la operación de retención podría fallar. Esto se debe a que la primera copia de Snapshot es la copia de Snapshot de referencia para la relación de SnapVault hasta que se replica una nueva copia de Snapshot en el destino.
+
+====
+. Especifique la configuración de frecuencia.
++
+La política especifica solamente la frecuencia de backup. La programación de protección específica para realizar el backup se define en el grupo de recursos. Por lo tanto, dos o más grupos de recursos pueden compartir la misma política y frecuencia de backup y, a su vez, tener diferentes programaciones de backup.
+
+. En los campos *replicación*, especifique el tipo de replicación al almacenamiento secundario, como se muestra en la siguiente tabla:
++
+[cols="50,50"]
+|===
+| Para este campo… | Haga esto… 
+
+
+ a| 
+Actualice SnapMirror después del backup
+ a| 
+Seleccione esta opción para crear copias reflejadas de los conjuntos de backups en otro volumen que tenga una relación de SnapMirror con el volumen de backup primario.
+Si un volumen está configurado con una relación mirror-vault, debe seleccionar sólo la opción *Actualizar SnapVault después de la copia de seguridad* si desea copiar las copias de seguridad en los destinos mirror-vault.
+
+[NOTE]
+====
+Esta opción es compatible para almacenes de datos en FlexGroup Volumes en el plugin de SnapCenter para VMware vSphere 4.5 y versiones posteriores.
+
+====
+
+
+ a| 
+Actualice SnapVault después del backup
+ a| 
+Seleccione esta opción para realizar una replicación de backup de disco a disco en otro volumen que tenga una relación de SnapVault con el volumen de backup primario.
+
+[NOTE]
+====
+Si se configura un volumen con una relación de reflejo-almacén, debe seleccionar solo esta opción si desea copiar backups en los destinos de reflejo-almacén.
+
+====
+[NOTE]
+====
+Esta opción es compatible para almacenes de datos en FlexGroup Volumes en el plugin de SnapCenter para VMware vSphere 4.5 y versiones posteriores.
+
+====
+
+
+ a| 
+Etiqueta de Snapshot
+ a| 
+Especifique una etiqueta opcional y personalizada que se añadirá a las copias de Snapshot de SnapVault y SnapMirror creadas con esta política.
+La etiqueta de Snapshot ayuda a distinguir las Snapshot creadas con esta política desde otras Snapshot del sistema de almacenamiento secundario.
+
+[NOTE]
+====
+Se permite un máximo de 31 caracteres para las etiquetas de copia de Snapshot.
+
+====
+|===
+. *Opcional*: En los campos Avanzados, seleccione los campos que se necesitan. Los detalles del campo Advanced se enumeran en la siguiente tabla.
++
+[cols="50,50"]
+|===
+| Para este campo… | Haga esto… 
+
+
+ a| 
+Consistencia de las máquinas virtuales
+ a| 
+Marque esta casilla para poner en modo inactivo las máquinas virtuales y crear una Snapshot de VMware cada vez que se ejecute el trabajo de backup.
+
+[NOTE]
+====
+Para realizar backups consistentes de las máquinas virtuales, debe tener herramientas de VMware en ejecución en la máquina virtual. Si VMware Tools no está en ejecución, se realiza un backup coherente con los fallos.
+
+====
+[NOTE]
+====
+Al marcar la casilla de consistencia de máquina virtual, las operaciones de backup pueden tardar más y requerir más espacio de almacenamiento. En este caso, las máquinas virtuales primero se ponen en modo inactivo, después VMware ejecuta una Snapshot de consistencia de máquina virtual, SnapCenter procede con su operación de backup y, a continuación, se reanudan las operaciones de máquina virtual.
+
+====
+La memoria invitada de la máquina virtual no se incluye en las Snapshots de consistencia de la máquina virtual.
+
+
+
+ a| 
+Incluir almacenes de datos con discos independientes
+ a| 
+Marque esta casilla para incluir en el backup los almacenes de datos con discos independientes que contengan datos temporales.
+
+
+
+ a| 
+Scripts
+ a| 
+Especifique la ruta completa de scripts previos o scripts posteriores que desee que el plugin de SnapCenter VMware ejecute antes o después de las operaciones de backup. Por ejemplo, se puede ejecutar un script para actualizar capturas SNMP, automatizar alertas y enviar registros. La ruta de acceso del script se valida en el momento en que se ejecuta el script.
+
+[NOTE]
+====
+Los scripts previos y posteriores deben encontrarse en la máquina virtual del dispositivo virtual. Para introducir varios scripts, presione Enter después de cada ruta de script a fin de introducir cada script en una línea diferente. No se permite el carácter ";".
+
+====
+|===
+. Haga clic en *Agregar*.
++
+Puede verificar si la política se creó y revisar su configuración seleccionando la política en la página Policies.
+
+

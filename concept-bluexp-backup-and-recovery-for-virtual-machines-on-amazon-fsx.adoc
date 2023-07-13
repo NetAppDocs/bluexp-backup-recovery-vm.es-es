@@ -1,0 +1,20 @@
+---
+permalink: concept-bluexp-backup-and-recovery-for-virtual-machines-on-amazon-fsx.html 
+sidebar: sidebar 
+keywords: bluexp, backup, recovery, virtual machines, amazon fsx 
+summary: 'El backup y recuperación de datos de BlueXP para máquinas virtuales es un dispositivo virtual independiente (formato de dispositivo virtual abierto) que proporciona servicios de protección de datos para máquinas virtuales y almacenes de datos en VMware Cloud on AWS y Amazon FSx para NetApp ONTAP. Puedes utilizar el backup y recuperación de datos de BlueXP para realizar backups de almacenes de datos y restaurar máquinas virtuales en su ubicación original.' 
+---
+= Backup y recuperación de datos de BlueXP para máquinas virtuales en Amazon FSx
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+El backup y recuperación de datos de BlueXP para máquinas virtuales es un dispositivo virtual independiente (formato de dispositivo virtual abierto) que proporciona servicios de protección de datos para máquinas virtuales y almacenes de datos en VMware Cloud on AWS y Amazon FSx para NetApp ONTAP. Puedes utilizar el backup y recuperación de datos de BlueXP para realizar backups de almacenes de datos y restaurar máquinas virtuales en su ubicación original.
+
+* Solo puedes realizar un backup de almacenes de datos de tipo NFS en Amazon FSx.
+* Debe ejecutar ONTAP 9,10 o posterior para realizar un backup de almacenes de datos NFS.
+* VMware Cloud viene con un rol predefinido de «CloudAdmin». El rol CloudAdmin tiene los privilegios necesarios para crear y administrar cargas de trabajo de SDDC y objetos relacionados, como políticas de almacenamiento, bibliotecas de contenido, etiquetas de vSphere y grupos de recursos.
+* Es posible restaurar máquinas virtuales y VMDK a su ubicación actual (restauración sin movimiento).
+

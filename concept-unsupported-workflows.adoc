@@ -1,0 +1,22 @@
+---
+permalink: concept-unsupported-workflows.html 
+sidebar: sidebar 
+keywords: unsupported, workflows 
+summary: Flujos de trabajo no compatibles 
+---
+= Flujos de trabajo no compatibles
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Los siguientes flujos de trabajo no son compatibles con el backup y recuperación de BlueXP para la versión de VM 1,0:
+
+* Asocie y desconecte VMDK
+* Montar y desmontar almacenes de datos
+* Restaurar archivos y carpetas invitados
+* Restaurar a ubicación alternativa
+* Añada un sistema de almacenamiento con el método de autenticación «certificado»
+* Añadir volúmenes NetApp ONTAP FlexGroup
+
