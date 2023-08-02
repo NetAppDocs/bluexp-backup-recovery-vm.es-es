@@ -2,9 +2,9 @@
 permalink: task-download-the-open-virtual-appliance.html 
 sidebar: sidebar 
 keywords: download, open virtual appliance 
-summary: 'Antes de instalar el dispositivo Open Virtual Appliance (OVA), añada el certificado al para vCenter. El archivo .tar contiene los certificados OVA y Entrust raíz e intermedio, los certificados se pueden encontrar dentro de la carpeta de certificados. La puesta en marcha de OVA es compatible con VMware vCenter 8,0 y versiones posteriores.' 
+summary: 'Descargue el dispositivo Open Virtual Appliance (OVA) en VMware vCenter 8,0 y versiones posteriores para implementar el backup y la recuperación de BlueXP en máquinas virtuales.' 
 ---
-= Descargue el dispositivo Open Virtual Appliance (OVA)
+= Descargue Open Virtual Appliance
 :allow-uri-read: 
 :experimental: 
 :icons: font
@@ -12,26 +12,30 @@ summary: 'Antes de instalar el dispositivo Open Virtual Appliance (OVA), añada 
 
 
 [role="lead"]
-Antes de instalar el dispositivo Open Virtual Appliance (OVA), añada el certificado al para vCenter. La `.tar` El archivo contiene los certificados OVA y Entrust raíz e intermedios; los certificados se pueden encontrar en la carpeta de certificados. La puesta en marcha de OVA es compatible con VMware vCenter 8,0 y versiones posteriores.
+Descargue el dispositivo Open Virtual Appliance (OVA) en VMware vCenter 8,0 y versiones posteriores para implementar el backup y la recuperación de BlueXP en máquinas virtuales.
 
-Si el OVA firmado por el certificado Entrust no es de confianza, debe realizar el siguiente procedimiento para resolver el problema.
+.Antes de empezar
+Si el OVA firmado por el certificado Entrust no es de confianza, asegúrese de instalar y añadir certificados intermedios en el para vCenter.
 
 .Pasos
 . Para descargar backup y recuperación de BlueXP para VMs OVA:
 +
-** Inicie sesión en la https://mysupport.netapp.com/products/index.html["Sitio de soporte de NetApp"^]
-** En la lista de productos, selecciona *Copia de seguridad y recuperación de BlueXP para VM*, luego haz clic en el botón *Descargar última versión*.
-** Descarga el backup y recuperación de datos de BlueXP para máquinas virtuales `.tar` archivar en cualquier ubicación.
+.. Inicie sesión en la https://mysupport.netapp.com/products/index.html["Sitio de soporte de NetApp"^]
+.. En la lista de productos, selecciona *Copia de seguridad y recuperación de BlueXP para VM*, luego haz clic en el botón *Descargar última versión*.
+.. Descarga el backup y recuperación de datos de BlueXP para máquinas virtuales `.tar` archivar en cualquier ubicación.
 
 
-. Extraiga el contenido del archivo tar. El archivo tar contiene el OVA y la carpeta certs. La carpeta certs contiene los certificados raíz e intermedio de Entrust.
-. Inicie sesión con las credenciales del cliente de vSphere en VMC en AWS.
-. Vaya al menú:Administración[Certificados > Gestión de certificados].
+. Extraiga el contenido del archivo tar. El archivo tar contiene el OVA y la carpeta certs. La carpeta certs contiene certificados intermedios.
+. En vSphere Client, vaya a *Administration > Certificates > Certificate Management*.
 . Junto a *Certificados raíz de confianza*, haz clic en *Agregar*.
 +
-** Vaya a la carpeta certs.
-** Seleccione los certificados raíz y intermedio de Entrust.
-** Instale cada certificado de uno en uno.
+
+NOTE: De manera predeterminada, se instala el certificado raíz.
+
++
+.. Vaya a la carpeta certs.
+.. Seleccione los certificados intermedios.
+.. Instale cada certificado de uno en uno.
 
 
 . Los certificados se agregan a un panel en Certificados raíz de confianza.
