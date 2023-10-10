@@ -11,7 +11,7 @@ summary: Para proteger equipos virtuales, almacenes de datos y bases de datos co
 
 
 [role="lead"]
-Para proteger equipos virtuales, almacenes de datos y bases de datos consistentes con las aplicaciones en máquinas virtuales, debes implementar el backup y la recuperación de BlueXP en máquinas virtuales.
+Para proteger las máquinas virtuales y los almacenes de datos en máquinas virtuales, debes implementar el backup y la recuperación de BlueXP para máquinas virtuales.
 
 .Antes de empezar
 ++ ++
@@ -30,9 +30,8 @@ La puesta en marcha de OVA es compatible con VMware vCenter 8,0 y versiones post
 * Debe tener un certificado con archivos válidos de claves pública y privada. Para obtener más información, consulte los artículos en la sección Gestión de certificados de almacenamiento.
 * Debe haber cerrado sesión y cerrado todas las sesiones del explorador del cliente de vSphere y eliminado la memoria caché del explorador para evitar cualquier problema de caché del explorador durante la implementación del backup y la recuperación de BlueXP para máquinas virtuales.
 * Debe haber habilitado Transport Layer Security (TLS) en vCenter. Consulte la documentación de VMware.
+* Debe haber implementado el backup y la recuperación de BlueXP para máquinas virtuales en la misma zona horaria que vCenter.
 
-
-Pon en marcha el backup y la recuperación de BlueXP para máquinas virtuales en la misma zona horaria que vCenter.
 
 .Pasos
 . Para VMware vCenter 7.0.3 y versiones posteriores, siga los pasos de Download the Open Virtual Appliance (OVA) para importar los certificados a vCenter.

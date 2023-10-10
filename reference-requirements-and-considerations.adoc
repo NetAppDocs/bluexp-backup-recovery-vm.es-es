@@ -31,4 +31,6 @@ Por ejemplo, si quieres realizar backups de seis instancias diferentes de VMC en
 
 
 
+* En la consola vmc.vmware.com, abra los puertos del firewall para permitir que la IP pública de la puerta de enlace de computación se comunique a través de TCP 443 con el vCenter en la red de gestión.
+* En la consola de AWS, debes actualizar el grupo de seguridad de la VPC en la que se ejecuta FSx para ONTAP para permitir que BlueXP realice el backup y la recuperación de datos para que las máquinas virtuales accedan a FSx para ONTAP.
 
