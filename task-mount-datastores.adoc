@@ -1,0 +1,36 @@
+---
+permalink: task-mount-datastores.html 
+sidebar: sidebar 
+keywords: mount, datastores 
+summary: El montaje de un almacén de datos da acceso de host al almacenamiento. 
+---
+= Montar almacenes de datos
+:allow-uri-read: 
+:experimental: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Es posible montar un almacén de datos desde un backup si se desea tener acceso a los archivos del backup.
+
+.Antes de empezar
+* Asegúrese de copiar el ID de organización y el token de API del portal VMC y agregarlos a la configuración de VMware Cloud Services.
+* Asegúrese de que un host ESXi alternativo pueda conectarse al almacenamiento
++
+Si desea montarlo en un host ESXi alternativo, debe asegurarse de que dicho host ESXi se pueda conectar al almacenamiento y que tenga el mismo UID y GID que el host original.
+
+
+
+.Pasos
+. En VMware vSphere Client, desplácese hasta image:menu_icon.png[""] > *Inventario* > *Almacenamiento*.
+. En el panel de navegación de la izquierda, haga clic con el botón derecho en un almacén de datos y seleccione *BlueXP backup and recovery for VMs* en la lista desplegable y, a continuación, seleccione *Mount Backup* en la lista desplegable secundaria.
+. En la página *Mount Datastore*, seleccione una copia de seguridad y una ubicación de copia de seguridad (primaria o secundaria), y luego haga clic en *Mount*.
+. Opcional: Para comprobar que el almacén de datos está montado, en la barra de herramientas del cliente de VMware vSphere, haga clic en *backup and recovery de BlueXP para máquinas virtuales*.
++
+El almacén de datos que montó se muestra en el mosaico *Actividades de trabajo recientes* del panel de control.
+
++
+Para evitar que se creen nuevas copias Snapshot al clonar el volumen, apague la programación ONTAP para el volumen SnapVault. Las copias de Snapshot que existían previamente no se eliminan.
+
+

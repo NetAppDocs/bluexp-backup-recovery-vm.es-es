@@ -1,0 +1,19 @@
+---
+permalink: reference-limitations.html 
+sidebar: sidebar 
+keywords: limitations 
+summary: Debes tener en cuenta las limitaciones antes de utilizar el backup y la recuperación de BlueXP para máquinas virtuales. 
+---
+= Limitaciones conocidas
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Las limitaciones conocidas identifican funciones que no son compatibles con esta versión del producto o cuya interoperabilidad con esta no es óptima. Revise estas limitaciones detenidamente.
+
+* El backup y la recuperación de datos de BlueXP no son compatibles con Amazon FSx para los backups diarios automáticos de ONTAP.
+* El límite máximo de almacenes de datos que se pueden montar es de cuatro.
+* El backup y la recuperación de datos de BlueXP para máquinas virtuales muestran dos veces la ubicación secundaria si se habilita el bloqueo de snapshots. Este problema se ha solucionado en ONTAP 9.14.1RC1, ONTAP 9.13.1P4 - ONTAP 9.13.1P5 y ONTAP 9.12.1P8 - ONTAP 9.12.1P9.
+

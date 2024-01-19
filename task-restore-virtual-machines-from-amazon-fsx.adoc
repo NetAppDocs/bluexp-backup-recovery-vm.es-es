@@ -13,6 +13,23 @@ summary: Al restaurar una máquina virtual, puede sobrescribir el contenido exis
 [role="lead"]
 Al restaurar una máquina virtual, puede sobrescribir el contenido existente con la copia de seguridad que seleccione o puede realizar una copia de la máquina virtual.
 
+Es posible restaurar máquinas virtuales en las siguientes ubicaciones:
+
+* Restaurar a la ubicación original
++
+** En el almacén de datos original montado en el host ESXi original (esto sobrescribe la máquina virtual original)
+
+
+* Restauración para cambio de ubicación
++
+** En un almacén de datos diferente montado en el host ESXi original
+** En el almacén de datos original montado en un host ESXi diferente gestionado por la misma instancia de vCenter
+** En un almacén de datos diferente montado en un host ESXi diferente gestionado por la misma instancia de vCenter
+** En un almacén de datos diferente montado en un host ESXi diferente gestionado por una instancia diferente de vCenter en modo vinculado
+
+
+
+
 .Antes de empezar
 * Debe existir un backup.
 +
@@ -50,13 +67,16 @@ Aunque una snapshot de consistencia de VMware arroje un fallo para una máquina 
 
 
 .Pasos
-. En la GUI del cliente web de VMware vSphere, haga clic en *Menú* en la barra de herramientas, haga clic en *Inventario* y luego seleccione *Máquinas virtuales y plantillas*.
-. En el panel de navegación izquierdo, haga clic con el botón derecho en una *Máquina virtual*, luego seleccione *Copia de seguridad en la nube de NetApp* en la lista desplegable y, a continuación, seleccione *Restaurar* para iniciar el asistente.
+. En la barra de herramientas del cliente VMware vSphere, haga clic en * Host and Clusters * y, a continuación, seleccione el sistema de almacenamiento.
+. En el panel de navegación de la izquierda, haga clic con el botón derecho en una *Virtual Machine*, luego seleccione *BlueXP backup and recovery for VMs* en la lista desplegable y, a continuación, seleccione *Restore* para iniciar el asistente.
 . En el asistente *Restaurar*, en la página *Seleccionar copia de seguridad*, seleccione la copia Snapshot de copia de seguridad que desea restaurar.
 +
 Puede buscar por un nombre de backup específico o un nombre de backup parcial y también puede filtrar la lista de backups haciendo clic en el icono de filtro y seleccionando un intervalo de fechas y horas. Además, debe seleccionar si desea backups que contengan snapshots de VMware, si desea visualizar backups montados y la ubicación. Haga clic en *Aceptar* para volver al asistente.
 
-. En la página *Select Scope*, seleccione *Whole Virtual Machine* en el campo *Restore Scope*, luego seleccione la ubicación de restauración y luego ingrese la información ESXi de destino donde se debe montar la copia de seguridad.
+. En la página *Select Scope*, seleccione *Whole Virtual Machine* en el campo *Restore Scope*, luego seleccione la ubicación de restauración y, a continuación, introduzca la información de destino donde se debe montar la copia de seguridad.
++
+En el campo VM name, si existe el mismo nombre de VM, el nuevo formato de nombre de VM es '<vm_name>_<timestamp>'.
+
 +
 Al restaurar copias de seguridad parciales, la operación de restauración omite la página *Select Scope*.
 
@@ -69,6 +89,6 @@ Al restaurar copias de seguridad parciales, la operación de restauración omite
 .Después de terminar
 * Agregar máquinas virtuales restauradas a grupos de recursos.
 +
-Aunque las máquinas virtuales se restauran, no se agregan automáticamente a sus grupos de recursos anteriores. Por lo tanto, debe añadir manualmente las máquinas virtuales restauradas a los grupos de recursos correspondientes.
+Asegúrese de que la máquina virtual recién restaurada esté protegida. Si no lo está, protéjala añadiendo manualmente la máquina virtual restaurada a los grupos de recursos correspondientes.
 
 

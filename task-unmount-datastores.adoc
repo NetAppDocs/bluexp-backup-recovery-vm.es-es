@@ -1,0 +1,29 @@
+---
+permalink: task-unmount-datastores.html 
+sidebar: sidebar 
+keywords: mount, datastores 
+summary: Al desmontar un almacén de datos se quita el acceso de host al almacenamiento. 
+---
+= Desmontar almacenes de datos
+:allow-uri-read: 
+:experimental: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+Una vez que ya no se necesita el acceso a los archivos del almacén de datos, es posible desmontar un backup.
+
+.Pasos
+. En VMware vSphere Client, desplácese hasta image:menu_icon.png[""] > *Inventario* > *Almacenamiento*.
+. En el panel de navegación de la izquierda, haga clic con el botón derecho en un almacén de datos y seleccione *BlueXP backup and recovery for VMs* en la lista desplegable y, a continuación, seleccione *Unmount* en la lista desplegable secundaria.
++
+
+NOTE: Asegúrese de haber seleccionado el almacén de datos correcto para desmontar. De lo contrario, podría afectar al trabajo de producción.
+
+. En el cuadro de diálogo *Unmount Backup*, seleccione un almacén de datos, seleccione la casilla de verificación *Unmount the datastore* y haga clic en *Unmount*.
+. Opcional: Para comprobar que el almacén de datos está desmontado, en la barra de herramientas del cliente de VMware vSphere, haga clic en *Copia de seguridad y recuperación de BlueXP para máquinas virtuales*.
++
+El almacén de datos que desmontó se muestra en el mosaico *Actividades de trabajo recientes* del panel de control.
+
+

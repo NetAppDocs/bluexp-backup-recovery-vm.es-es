@@ -12,7 +12,11 @@ sidebar:
   - title: Documentos de backup y recuperación de datos de BlueXP para máquinas virtuales
     url: "/index.html"
   - title: Notas de la versión
-    url: "/whats-new.html"
+    entries:
+    - title: Novedades
+      url: "/whats-new.html"
+    - title: Limitaciones conocidas
+      url: "/reference-limitations.html"
   - title: Manos a la obra
     entries:
     - title: Obtén más información sobre el backup y la recuperación de datos de BlueXP
@@ -39,8 +43,22 @@ sidebar:
       url: "/task-create-resource-groups.html"
     - title: Realice un backup de grupos de recursos bajo demanda
       url: "/task-back-up-resource-groups-on-demand.html"
+  - title: Montar y desmontar almacenes de datos
+    entries:
+    - title: Montar almacenes de datos
+      url: "/task-mount-datastores.html"
+    - title: Desmontar almacenes de datos
+      url: "/task-unmount-datastores.html"
+  - title: Asocie y desconecte VMDK
+    entries:
+    - title: Asociar VMDK a una máquina virtual
+      url: "/task-attach-vmdks-vm.html"
+    - title: Desvincular un disco virtual
+      url: "/task-detach-virtual-disks.html"
   - title: Restaura máquinas virtuales desde Amazon FSx
     url: "/task-restore-virtual-machines-from-amazon-fsx.html"
+  - title: Acceda a las API DE REST
+    url: "/task-access-rest-apis.html"
   - title: Conocimiento y apoyo
     entries:
     - title: Regístrese para recibir soporte

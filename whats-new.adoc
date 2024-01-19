@@ -15,6 +15,22 @@ Descubre las novedades de backup y recuperación de BlueXP para máquinas virtua
 
 
 
+== 18 de enero de 2024
+
+
+
+=== Mejoras en el backup y recuperación de datos de BlueXP para máquinas virtuales
+
+Las siguientes son las funciones compatibles con el backup y la recuperación de BlueXP para máquinas virtuales 1,1:
+
+* Montar y desmontar almacenes de datos
+* Asocie y desconecte VMDK
+* Restaure equipos virtuales para cambiar de ubicación
+* Habilite el bloqueo de snapshots para garantizar que las copias snapshot no se manipulen hasta un tiempo especificado.
+
+
+
+
 == 13 de julio de 2023
 
 
