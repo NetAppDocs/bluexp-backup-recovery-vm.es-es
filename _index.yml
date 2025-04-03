@@ -1,5 +1,10 @@
 ---
 indexpage:
+  title: Documentación de backup y recuperación de BlueXP para máquinas virtuales
+  summary: Backup y recuperación de datos de BlueXP para máquinas virtuales en Amazon
+    FSx.
+  keywords: bluexp backup and recovery for VMs documentation, Deploy, BlueXP, backup,
+    recovery, OVA, storage, Demos, tutorials
   lead: El backup y recuperación de datos de BlueXP para máquinas virtuales es un
     dispositivo virtual independiente (formato de dispositivo virtual abierto) que
     proporciona servicios de protección de datos para máquinas virtuales y almacenes
@@ -34,11 +39,11 @@ indexpage:
   - title: Demostraciones y tutoriales
     links:
     - title: Instalar el backup y recuperación de datos de BlueXP en máquinas virtuales
-      url: https://www.youtube.com/watch?v=kCuKY0fBf5U
+      url: https://www.youtube.com/watch?v=senCAisw5VQ
     - title: Backup FSx para almacenes de datos y máquinas virtuales de ONTAP
-      url: https://www.youtube.com/watch?v=cLWOFm_3g3U
+      url: https://www.youtube.com/watch?v=NUFRkfnhQNk
     - title: Restauración de máquinas virtuales y VMDK FSx para almacenes de datos
         de ONTAP
-      url: https://www.youtube.com/watch?v=RVLYP0lguxkM
+      url: https://www.youtube.com/watch?v=Wk8q-vJ3TIg
     - title: Protección de las cargas de trabajo de Oracle y MS® SQL
       url: https://community.netapp.com/t5/Tech-ONTAP-Blogs/Protect-Oracle-MS-SQL-workloads-using-NetApp-SnapCenter-in-VMware-Cloud-on-AWS/ba-p/449168
